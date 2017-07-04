@@ -7,7 +7,7 @@
 #include "FrequencyInfo.h"
 
 //
-int performChi2Break(const char* inFilename, const char* outFilename,
+int performChi2Break(const char* const inFilename, const char* const outFilename,
                  const int keyLength,
                  const AlphabetTransform* at, const FrequencyInfo* finfo) ;
 

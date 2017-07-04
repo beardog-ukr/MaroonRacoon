@@ -84,7 +84,7 @@ int readCosetFromFile(FILE* fp, const int cosetIndex, const int cosetNumber,
 
 // ===========================================================================
 
-char getShiftedCosetSymbol(const char ch, AlphabetTransform* const at,
+char getShiftedCosetSymbol(const char ch, const AlphabetTransform* const at,
                           const int shift){
   int chPos = findAlphabetPos(at->basic, ch) ;
   int resultPos = chPos -shift;
@@ -103,7 +103,7 @@ char getShiftedCosetSymbol(const char ch, AlphabetTransform* const at,
 // ===========================================================================
 
 double calculateChi2ForCoset(char* const coset, const int shiftValue,
-                             AlphabetTransform* at, FrequencyInfo* finfo) {
+                     const AlphabetTransform* at, const FrequencyInfo* finfo) {
   int* counters = malloc(at->n * (sizeof (int)));
   double* actualFreq = malloc(at->n * (sizeof (double)));
   for(int i=0; i< at->n; i++) {
@@ -137,7 +137,8 @@ double calculateChi2ForCoset(char* const coset, const int shiftValue,
 
 // ===========================================================================
 
-char decodeChi2ForCoset(char* const coset, AlphabetTransform* at, FrequencyInfo* finfo) {
+char decodeChi2ForCoset(char* const coset,
+                    const AlphabetTransform* at, const FrequencyInfo* finfo) {
   char result = '\0' ;
   double resultValue = DBL_MAX;
   for(int i=0; i<at->n; i++) {

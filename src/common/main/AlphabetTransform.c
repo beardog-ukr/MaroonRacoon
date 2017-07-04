@@ -76,7 +76,7 @@ int loadAlphabetFile(const char* filename, AlphabetTransform* at) {
   FILE* fp;
   int result =0;
 
-  printf("Starting read alphabet file %s \n", filename);
+  // printf("Starting read alphabet file %s \n", filename);
 
   fp = fopen(filename, "r");
   if (fp == NULL) {

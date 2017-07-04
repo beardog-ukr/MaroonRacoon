@@ -18,6 +18,6 @@ int loadOneFrequencyInfoLine(char* line, char* sp, double* dp);
 int getFrequencyInfoLoaderError(const int errorCode, char* line, const int lineLim);
 void printFrequencyInfoLoaderError(const int errorCode);
 
-double getFrequency(const char symbol, FrequencyInfo* info) ;
+double getFrequency(const char symbol, const FrequencyInfo* const info) ;
 
 #endif

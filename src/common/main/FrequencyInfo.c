@@ -146,7 +146,7 @@ int loadFrequencyInfoFile(const char* filename, FrequencyInfo* finfo) {
 
 // ===========================================================================
 
-double getFrequency(const char symbol, FrequencyInfo* info) {
+double getFrequency(const char symbol, const FrequencyInfo* const info) {
   for (int i=0; i<info->n; i++) {
     if (info->symbols[i]==symbol) {
       return info->frequencies[i];

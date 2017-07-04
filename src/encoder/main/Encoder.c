@@ -91,9 +91,9 @@ int performEncoding(const char* inFilename, const char* outFilename,
     convertLine(at, buf, cBuf, bufSize);
     encodeLine(at, cBuf, key, keyLen, charPos, eBuf, bufSize);
     fprintf(resultFile, "%s\n", eBuf);
-    printf("Basic: %s\n", buf);
-    printf("Conv : %s\n", cBuf);
-    printf("Enc  : %s\n", eBuf);
+    //printf("Basic: %s\n", buf);
+    //printf("Conv : %s\n", cBuf);
+    //printf("Enc  : %s\n", eBuf);
 
     charPos += strlen(cBuf);
   }

@@ -10,7 +10,7 @@ enum FileUtilsErrorCodes {
 
 // ===========================================================================
 
-int readFullFile(char* const filename, char* buf, const int bufLimit) {
+int readFullFile(const char* const filename, char* buf, const int bufLimit) {
   FILE* fp;
   fp = fopen(filename, "r");
   if (fp == NULL) {
@@ -35,7 +35,7 @@ int readFullFile(char* const filename, char* buf, const int bufLimit) {
     }
   }
 
-  printf("Got line <%s>\n", buf);
+  //printf("Got line <%s>\n", buf);
 
   free(lineBuf);
   fclose(fp);

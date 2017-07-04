@@ -16,13 +16,14 @@ int readCosetFromFile(FILE* filename,
                       const int cosetIndex, const int cosetNumber,
                       char* resultBuf, const int resultLen);
 
-char getShiftedCosetSymbol(const char basic, AlphabetTransform* const at,
+char getShiftedCosetSymbol(const char basic, const AlphabetTransform* const at,
                           const int shift);
 
 double calculateChi2ForCoset(char* const coset, const int shiftValue,
-                             AlphabetTransform* at, FrequencyInfo* finfo);
+                     const AlphabetTransform* at, const FrequencyInfo* finfo);
 
-char decodeChi2ForCoset(char* const coset, AlphabetTransform* at, FrequencyInfo* finfo);
+char decodeChi2ForCoset(char* const coset,
+                      const AlphabetTransform* at, const FrequencyInfo* finfo);
 
 
 //
