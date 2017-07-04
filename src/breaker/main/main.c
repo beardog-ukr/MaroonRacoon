@@ -3,33 +3,38 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "AlphabetTransform.h"
-//#include "X2Decode.h"
+
+#include "Breaker.h"
 #include "BreakerCLAP.h"
 
 // ===========================================================================
 
 void performAction(BreakerParameters pp) {
   int execResult = 0;
-  AlphabetTransform* atRules = createAlphabetTransform();
+  AlphabetTransform* atRules =  createAlphabetTransform();
 
   execResult = loadAlphabetFile(pp.alphFilename, atRules);
-
-  if (!execResult) {
-    printf("Got rules:\n");
-    printf("basic         : %s\n", atRules->basic);
-    printf("transformation: %s\n", atRules->transformation);
-    printf("transConfirm  : %s\n", atRules->transConfirm);
-
-//    execResult = performDecoding(pp->inFilename, pp->outFilename,
-//                                 pp->key, atRules  );
+  if (execResult!=0) {
+    freeAlphabetTransform(atRules);
+    return;
   }
-  //
+
+  FrequencyInfo* finf = createFrequencyInfo();
+  execResult = loadFrequencyInfoFile(pp.fiFilename, finf) ;
+  if (execResult!=0) {
+    printFrequencyInfoLoaderError(execResult) ;
+    freeFrequencyInfo(finf);
+    freeAlphabetTransform(atRules);
+    return;
+  }
+
+  execResult = performBreak(pp.inFilename, pp.outFilename, atRules, finf);
   if (execResult!=0) {
     printf("Failed something %u\n", execResult);
   }
 
-  atRules = freeAlphabetTransform(atRules);
+  freeAlphabetTransform(atRules);
+  freeFrequencyInfo(finf);
 }
 
 // ===========================================================================
@@ -44,12 +49,6 @@ int main(int argc, char *argv[]) {
     printBreakerClapError(pclr);
     return 1;
   }
-
-  printf("Working in from %s\n", bp.inFilename);
-  printf("Working out to %s\n", bp.outFilename);
-  printf("Alphabet will be loaded from %s\n", bp.alphFilename);
-  printf("Key length supposed to be \"%u\"\n", bp.key);
-
 
   performAction(bp) ;
 

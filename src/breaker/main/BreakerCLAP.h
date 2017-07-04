@@ -7,11 +7,9 @@ typedef struct BreakerParametersStruct {
   char* inFilename;
   char* alphFilename;
   char* outFilename;
-  int key;
+  char* fiFilename;
   bool showHelp;
 } BreakerParameters;
-
-void initDecoderParameters(BreakerParameters* bp);
 
 // ===========================================================================
 

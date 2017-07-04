@@ -172,6 +172,7 @@ clean_preprocessor: clean_common
 
 BREAKER_SOURCES_DIR = src/breaker/main/
 BREAKER_SOURCES = main.c
+BREAKER_SOURCES += Breaker.c
 BREAKER_SOURCES += BreakerCLAP.c
 
 BREAKER_OBJ = $(BREAKER_SOURCES:.c=.o)
