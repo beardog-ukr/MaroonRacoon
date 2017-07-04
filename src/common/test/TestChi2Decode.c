@@ -10,7 +10,7 @@
 //int readCosetFromLine(char * const line,
 //                      const int cosetIndex, const int cosetNumber,
 //                      char* resultBuf, const int resultLen);
-bool test_readCosetFromLine_basic(){
+bool tst_readCosetFromLine_A(char* errorBuf, const int errorBufLim){
   char* line = "RSTCSJLSLRSLFELGWLFIISIKRMGL";
 
   const int bSize = 1024;
@@ -19,7 +19,8 @@ bool test_readCosetFromLine_basic(){
   readCosetFromLine(line, 0, 3, b0, bSize);
   char* c0 = "RCLRFGFSRL" ;
   if (strcmp(c0, b0)!=0) {
-    printf("test_readCosetFromLine_basic: %s != %s", b0, c0);
+    snprintf(errorBuf, errorBufLim,
+             "tst_readCosetFromLine_A: %s != %s", b0, c0);
     return false;
   }
 
@@ -27,7 +28,7 @@ bool test_readCosetFromLine_basic(){
   readCosetFromLine(line, 1, 3, b1, bSize);
   char* c1 = "SSSSEWIIM" ;
   if (strcmp(c1, b1)!=0) {
-    printf("test_readCosetFromLine_basic: %s != %s", b1, c1);
+    snprintf(errorBuf,errorBufLim,"tst_readCosetFromLine_A: %s != %s", b1, c1);
     return false;
   }
 
@@ -35,7 +36,7 @@ bool test_readCosetFromLine_basic(){
   readCosetFromLine(line, 2, 3, b2, bSize);
   char* c2 = "TJLLLLIKG" ;
   if (strcmp(c2, b2)!=0) {
-    printf("test_readCosetFromLine_basic: %s != %s", b2, c2);
+    snprintf(errorBuf, errorBufLim,"tst_readCosetFromLine_A: %s != %s", b2, c2);
     return false;
   }
 
@@ -48,7 +49,7 @@ bool test_readCosetFromLine_basic(){
 //int readCosetFromLine(char * const line,
 //                      const int cosetIndex, const int cosetNumber,
 //                      char* resultBuf, const int resultLen);
-bool test_readCosetFromLine_short(){
+bool tst_readCosetFromLine_B(char* errorBuf, const int errorBufLim){
   char* line = "RS";
 
   const int bSize = 1024;
@@ -57,6 +58,8 @@ bool test_readCosetFromLine_short(){
   readCosetFromLine(line, 0, 3, b0, bSize);
   char* c0 = "R" ;
   if (strcmp(c0, b0)!=0) {
+    snprintf(errorBuf, errorBufLim,
+             "tst_readCosetFromLine_B: %s != %s", b0, c0);
     return false;
   }
 
@@ -64,6 +67,8 @@ bool test_readCosetFromLine_short(){
   readCosetFromLine(line, 1, 3, b1, bSize);
   char* c1 = "S" ;
   if (strcmp(c1, b1)!=0) {
+    snprintf(errorBuf, errorBufLim,
+             "tst_readCosetFromLine_B: %s != %s", b1, c1);
     return false;
   }
 
@@ -71,6 +76,8 @@ bool test_readCosetFromLine_short(){
   readCosetFromLine(line, 2, 3, b2, bSize);
   //char* c2 = "" ; third cosed should appear enmpty
   if (strlen(b2)!=0) {
+    snprintf(errorBuf, errorBufLim,
+             "tst_readCosetFromLine_B: zz \"%s\"", b2);
     return false;
   }
 

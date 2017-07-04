@@ -7,8 +7,10 @@
 //int readCosetFromLine(char * const line,
 //                      const int cosetIndex, const int cosetNumber,
 //                      char* resultBuf, const int resultLen);
-bool test_readCosetFromLine_basic();
-bool test_readCosetFromLine_short();
+//basic usage
+bool tst_readCosetFromLine_A(char* errorBuf, const int errorBufLim);
+//short line
+bool tst_readCosetFromLine_B(char* errorBuf, const int errorBufLim);
 
 //=============================================================================
 //int readCosetFromFile(FILE* filename,

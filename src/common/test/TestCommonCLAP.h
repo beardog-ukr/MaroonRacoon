@@ -4,6 +4,6 @@
 #include <stdbool.h>
 
 //bool looksLikeOption(char* const sample);
-bool test_looksLikeOption_basic();
+bool tst_looksLikeOption_A(char* errorBuf, const int errorBufLim);
 
 #endif

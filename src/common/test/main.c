@@ -1,6 +1,4 @@
 #include <stdio.h> //printf
-#include <stdlib.h>
-#include <unistd.h>
 
 #include "TestChi2Decode.h"
 #include "TestCommonCLAP.h"
@@ -8,115 +6,77 @@
 #include "TestFrequencyInfo.h"
 
 // ===========================================================================
+
+void runTest(int* totalCounter, int* failedCounter,
+             char* errorBuf, const int errorBufLim,
+             bool (*tst_func)(char* , const int )){
+  //
+  bool tmpboo = tst_func(errorBuf, errorBufLim);
+  if (!tmpboo) {
+    (*failedCounter)++;
+    printf("F: %s\n", errorBuf);
+  }
+  (*totalCounter)++;
+}
+
+// ===========================================================================
 // ===========================================================================
 // ===========================================================================
 
 int main(int argc, char *argv[]) {
-  printf("Starting tests\n");
+  printf("Starting \"Common\" tests\n");
 
   int testCounter =0;
   int failedCounter =0;
-  bool ter ;//test execution result
 
   const int errorMessageLimit = 2048;
   char errorMessageBuf[errorMessageLimit];
+  errorMessageBuf[0] = '\0';
 
-  ter = test_looksLikeOption_basic();
-  if (!ter) {
-    failedCounter++;
-    printf("F: test_looksLikeOption_basic()\n");
-  }
-  testCounter++;
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_looksLikeOption_A);
 
-  //-----
-  ter = test_readCosetFromLine_basic();
-  if (!ter) {
-    failedCounter++;
-    printf("F: test_readCosetFromLine_basic()\n");
-  }
-  testCounter++;
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_readCosetFromLine_A);
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_readCosetFromLine_B);
 
-  //-----
-  ter = test_readCosetFromLine_short();
-  if (!ter) {
-    failedCounter++;
-    printf("F: %s\n", errorMessageBuf);
-  }
-  testCounter++;
+  //----- this one is known bug
+  // runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          // test_readCosetFromFile_basic);
 
-  //-----
-  // ter = test_readCosetFromFile_basic(&errorMessageBuf[0], errorMessageLimit);
-  // if (!ter) {
-  //   failedCounter++;
-  //   printf("F: %s\n", errorMessageBuf);
-  // }
-  // testCounter++;
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_getShiftedCosetSymbol_A);
 
-  ter = tst_getShiftedCosetSymbol_A(&errorMessageBuf[0], errorMessageLimit);
-  if (!ter) {
-    failedCounter++;
-    printf("F: %s\n", errorMessageBuf);
-  }
-  testCounter++;
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_getShiftedCosetSymbol_B);
 
-  ter = tst_getShiftedCosetSymbol_B(&errorMessageBuf[0], errorMessageLimit);
-  if (!ter) {
-    failedCounter++;
-    printf("F: %s\n", errorMessageBuf);
-  }
-  testCounter++;
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_calculateChi2ForCoset_A  );
 
-  ter = tst_calculateChi2ForCoset_A(&errorMessageBuf[0], errorMessageLimit);
-  if (!ter) {
-    failedCounter++;
-    printf("F: %s\n", errorMessageBuf);
-  }
-  testCounter++;
-
-  ter = tst_decodeChi2ForCoset_A(&errorMessageBuf[0], errorMessageLimit);
-  if (!ter) {
-    failedCounter++;
-    printf("F: %s\n", errorMessageBuf);
-  }
-  testCounter++;
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_decodeChi2ForCoset_A);
 
   //---------------------------------------------------------------------------
-  //
-  ter = tst_loadOneFrequencyInfoLine_A(&errorMessageBuf[0], errorMessageLimit);
-  if (!ter) {
-    failedCounter++;
-    printf("F: %s\n", errorMessageBuf);
-  }
-  testCounter++;
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_loadOneFrequencyInfoLine_A);
 
-  ter = tst_loadFrequencyInfoFile_A(&errorMessageBuf[0], errorMessageLimit);
-  if (!ter) {
-    failedCounter++;
-    printf("F: %s\n", errorMessageBuf);
-  }
-  testCounter++;
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_loadFrequencyInfoFile_A);
 
-  ter = tst_getFrequency_A(&errorMessageBuf[0], errorMessageLimit);
-  if (!ter) {
-    failedCounter++;
-    printf("F: %s\n", errorMessageBuf);
-  }
-  testCounter++;
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_getFrequency_A);
 
   // --------------------------------------------------------------------------
-  ter = tst_readFullFile_A(&errorMessageBuf[0], errorMessageLimit);
-  if (!ter) {
-    failedCounter++;
-    printf("F: %s\n", errorMessageBuf);
-  }
-  testCounter++;
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_readFullFile_A);
 
-  printf("Finished testing\n");
+  printf("Finished \"Common\" testing\n");
   if (failedCounter>0) {
-    printf("Failed %u/%u\n", failedCounter, testCounter);
+    printf("Failed %u/%u \"Common\" tests\n", failedCounter, testCounter);
   }
   else {
-    printf("All %u tests successfully passed\n", testCounter);
+    printf("All %u \"Common\" tests successfully passed\n", testCounter);
   }
   return 0;
 }
