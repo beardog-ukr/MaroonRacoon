@@ -38,10 +38,15 @@ int performBreak(const char* const inFilename, const char* const outFilename,
   }
   key[keyLength] = '\0';
 
-  printf("Key is guessed as %s\n", key) ;
+  printf("Key is guessed as \"%s\"\n", key) ;
 
   free(cosetBuf) ;
   free(fileBuf) ;
+
+  //---
+  result = performDecoding(inFilename, outFilename, key, at);
+
+  //finally
   return result;
 }
 

@@ -1,17 +1,9 @@
-#include "Decoder.h"
+#include "BasicDecode.h"
 
 #include <stdbool.h> //bool
 #include <stdio.h> //fgetc, fopen
 #include <stdlib.h> // malloc
 #include <string.h> //strlen
-
-enum PreprocessorErrorCodes {
-  DEC_FAILED_READ_SOURCE ,
-  DEC_FAILED_WRITE_RESULT,
-  DEC_EMPTY_KEY
-};
-
-//static const char PECM_FAILED_READ_ALPHABET[] = "Failed to read alphabet file\n";
 
 // ===========================================================================
 
@@ -21,6 +13,10 @@ char decodeOneChar(const AlphabetTransform* at,
   const char keyChar = key[(keyPos % keyLen)] ;
   int ksPos = findAlphabetPos(at->basic, keyChar);
   int csPos = findAlphabetPos(at->basic, symbol);
+  if ((ksPos<0)||(csPos<0)) {
+    return '\0';
+  }
+
   int psPos = (csPos - ksPos) ;//
   if (psPos<0) {
     psPos = at->n + psPos ;
@@ -53,6 +49,12 @@ void decodeLine(const AlphabetTransform* at, char* line,
 
   result[ri] = '\0';
 }
+
+enum DecoderErrorCodes {
+  DEC_FAILED_READ_SOURCE =1 ,
+  DEC_FAILED_WRITE_RESULT,
+  DEC_EMPTY_KEY
+};
 
 // ===========================================================================
 
@@ -94,8 +96,8 @@ int performDecoding(const char* inFilename, const char* outFilename,
 
     decodeLine(at, buf, key, keyLen, charPos, dBuf, bufSize);
     fprintf(resultFile, "%s\n", dBuf);
-    printf("Basic: %s\n", buf);
-    printf("Enc  : %s\n", dBuf);
+    // printf("Basic: %s\n", buf);
+    // printf("Enc  : %s\n", dBuf);
 
     charPos += strlen(buf);
   }

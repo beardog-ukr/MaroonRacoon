@@ -7,6 +7,7 @@ CFLAGS = -Wall
 
 COMMON_SOURCES_DIR = src/common/main/
 COMMON_SOURCES = AlphabetTransform.c
+COMMON_SOURCES += BasicDecode.c
 COMMON_SOURCES += Chi2Decode.c
 COMMON_SOURCES += CommonCLAP.c
 COMMON_SOURCES += CosetFunctions.c
@@ -34,6 +35,7 @@ clean_common:
 
 COMMON_TEST_SOURCES_DIR = src/common/test/
 COMMON_TEST_SOURCES = main.c
+COMMON_TEST_SOURCES += TestBasicDecode.c
 COMMON_TEST_SOURCES += TestChi2Decode.c
 COMMON_TEST_SOURCES += TestCommonCLAP.c
 COMMON_TEST_SOURCES += TestCosetFunctions.c
@@ -72,7 +74,6 @@ clean_common_test: clean_common
 
 DECODER_SOURCES_DIR = src/decoder/main/
 DECODER_SOURCES = main.c
-DECODER_SOURCES += Decoder.c
 DECODER_SOURCES += DecoderCLAP.c
 
 DECODER_OBJ = $(DECODER_SOURCES:.c=.o)

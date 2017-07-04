@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 #include "AlphabetTransform.h"
-#include "Decoder.h"
+#include "BasicDecode.h"
 #include "DecoderCLAP.h"
 
 // ===========================================================================
@@ -16,13 +16,7 @@ void performAction(DecoderParameters* pp) {
   execResult = loadAlphabetFile(pp->alphFilename, atRules);
 
   if (!execResult) {
-    printf("Got rules:\n");
-    printf("basic         : %s\n", atRules->basic);
-    printf("transformation: %s\n", atRules->transformation);
-    printf("transConfirm  : %s\n", atRules->transConfirm);
-
-    execResult = performDecoding(pp->inFilename, pp->outFilename,
-                                 pp->key, atRules  );
+    execResult = performDecoding(pp->inFilename, pp->outFilename, pp->key, atRules  );
   }
   //
   if (execResult!=0) {
@@ -45,10 +39,10 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  printf("Working in from %s\n", dp.inFilename);
-  printf("Working out to %s\n", dp.outFilename);
-  printf("Alphabet will be loaded from %s\n", dp.alphFilename);
-  printf("Key is \"%s\"\n", dp.key);
+  // printf("Working in from %s\n", dp.inFilename);
+  // printf("Working out to %s\n", dp.outFilename);
+  // printf("Alphabet will be loaded from %s\n", dp.alphFilename);
+  // printf("Key is \"%s\"\n", dp.key);
 
 
   performAction(&dp) ;
