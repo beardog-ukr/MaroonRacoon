@@ -9,8 +9,10 @@ COMMON_SOURCES_DIR = src/common/main/
 COMMON_SOURCES = AlphabetTransform.c
 COMMON_SOURCES += Chi2Decode.c
 COMMON_SOURCES += CommonCLAP.c
+COMMON_SOURCES += CosetFunctions.c
 COMMON_SOURCES += FileUtils.c
 COMMON_SOURCES += FrequencyInfo.c
+COMMON_SOURCES += IndexOfCoincidence.c
 
 COMMON_SOURCES_FP = $(addprefix $(COMMON_SOURCES_DIR),$(COMMON_SOURCES))
 
@@ -34,8 +36,10 @@ COMMON_TEST_SOURCES_DIR = src/common/test/
 COMMON_TEST_SOURCES = main.c
 COMMON_TEST_SOURCES += TestChi2Decode.c
 COMMON_TEST_SOURCES += TestCommonCLAP.c
+COMMON_TEST_SOURCES += TestCosetFunctions.c
 COMMON_TEST_SOURCES += TestFileUtils.c
 COMMON_TEST_SOURCES += TestFrequencyInfo.c
+COMMON_TEST_SOURCES += TestIndexOfCoincidence.c
 
 COMMON_TEST_OBJ = $(COMMON_TEST_SOURCES:.c=.o)
 COMMON_TEST_OBJ_DIR = build/common_test_obj/

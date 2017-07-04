@@ -2,8 +2,10 @@
 
 #include "TestChi2Decode.h"
 #include "TestCommonCLAP.h"
+#include "TestCosetFunctions.h"
 #include "TestFileUtils.h"
 #include "TestFrequencyInfo.h"
+#include "TestIndexOfCoincidence.h"
 
 // ===========================================================================
 
@@ -70,6 +72,13 @@ int main(int argc, char *argv[]) {
   // --------------------------------------------------------------------------
   runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
           tst_readFullFile_A);
+
+  // -------------------------------------------------------------------------
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_calculateIndexOfCoincidence_A);
+
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_guessKeyLengthIOC_A);
 
   printf("Finished \"Common\" testing\n");
   if (failedCounter>0) {
