@@ -83,15 +83,18 @@ FrequencyInfo* freeFrequencyInfo(FrequencyInfo* finfo) {
 
 int loadOneFrequencyInfoLine(char* line, char* sp, double* dp){
   if (line==0) {
+    // printf("FIEC_FILE_FORMAT 1\n");
     return FIEC_FILE_FORMAT;
   }
 
   int lineLen = strlen(line);
   if (lineLen<3) {
+    // printf("FIEC_FILE_FORMAT 2\n");
     return FIEC_FILE_FORMAT;
   }
 
   if (line[1]!= ' ') {
+    // printf("FIEC_FILE_FORMAT 3\n");
     return FIEC_FILE_FORMAT;
   }
 

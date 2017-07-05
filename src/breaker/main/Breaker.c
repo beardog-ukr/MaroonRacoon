@@ -1,5 +1,6 @@
 #include "Breaker.h"
 
+#include "BasicDecode.h"
 #include "Chi2Decode.h"
 #include "CosetFunctions.h" //readCosetFromLine
 #include "IndexOfCoincidence.h"

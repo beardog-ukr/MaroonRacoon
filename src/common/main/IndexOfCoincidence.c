@@ -29,10 +29,10 @@ double calculateIndexOfCoincidence(const char* const line,
     if (counters[i] >0) {
       csum += counters[i]*(counters[i]-1) ;
     }
-    // printf("Counter %c is %u (%u)\n", at->basic[i], counters[i], csum);
+    //printf("Counter %c is %u (%u)\n", at->basic[i], counters[i], csum);
   }
 
-  // printf("And line length is %u (%u)\n", lineLength, csum );
+  //printf("And line length is %u (%u)\n", lineLength, csum );
   double result = lineLength*(lineLength-1);
   result = csum / result;
 
@@ -55,7 +55,7 @@ int guessKeyLengthIOC(const char* const line,const AlphabetTransform* const at) 
     for(int ci=0; ci<li; ci++) {
       readCosetFromLine(line, ci, li, cosetBuf, lineLen);
       double tmpd = calculateIndexOfCoincidence(cosetBuf, at);
-      // printf("IOC: %f %s (%u:%u)\n", tmpd, cosetBuf, ci, li);
+      //printf("IOC: %f %s (%u:%u)\n", tmpd, cosetBuf, ci, li);
       aiocAcc += tmpd;
     }
     double currentAioc = aiocAcc/li;
