@@ -81,6 +81,10 @@ int processCommandLine(const int argc, char * const argv[],
     return EC_MORE_ARGUMENTS;
   }
 
+  if (parameters->showHelp) {
+    return 0; //no need to perform other checks
+  }
+
   if ( parameters->alphFilename ==0) {
     return EC_MISSED_ALPH;
   }

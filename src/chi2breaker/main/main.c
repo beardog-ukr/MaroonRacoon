@@ -52,6 +52,17 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+  if (c2bp.showHelp) {
+    printf("vi_ci2breaker accepts following command line options:\n");
+    printf("  -i or --in sets input file name\n");
+    printf("  -o or --out sets file name to store result\n");
+    printf("  -a or --aplh is a name of the file defining alphabet\n" );
+    printf("  -f or --fi is a name of the file defining letter frequency\n" );
+    printf("  -k or --key defines key length (integer)\n" );
+    printf("all parameters are mandatory\n");
+    return 0;
+  }
+
   performAction(c2bp) ;
 
   return 0;

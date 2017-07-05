@@ -51,6 +51,16 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+  if (ep.showHelp) {
+    printf("vi_encoder accepts following command line options:\n");
+    printf("  -i or --in sets input file name\n");
+    printf("  -o or --out sets file name to store result\n");
+    printf("  -a or --aplh is a name of the file defining alphabet\n" );
+    printf("  -k or --key defines key\n" );
+    printf("all parameters are mandatory\n");
+    return 0;
+  }
+
   // printf("Working in from %s\n", ep.inFilename);
   // printf("Working out to %s\n", ep.outFilename);
   // printf("Alphabet will be loaded from %s\n", ep.alphFilename);

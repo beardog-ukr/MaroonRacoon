@@ -50,7 +50,15 @@ int main(int argc, char *argv[]) {
   // printf("Working out to %s\n", dp.outFilename);
   // printf("Alphabet will be loaded from %s\n", dp.alphFilename);
   // printf("Key is \"%s\"\n", dp.key);
-
+  if (dp.showHelp) {
+    printf("vi_decoder accepts following command line options:\n");
+    printf("  -i or --in sets input file name\n");
+    printf("  -o or --out sets file name to store result\n");
+    printf("  -a or --aplh is a name of the file defining alphabet\n" );
+    printf("  -k or --key defines key\n" );
+    printf("all parameters are mandatory\n");
+    return 0;
+  }
 
   performAction(&dp) ;
 

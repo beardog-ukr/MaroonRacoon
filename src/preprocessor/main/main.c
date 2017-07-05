@@ -42,6 +42,15 @@ int main(int argc, char *argv[])
     return 1;
   }
 
+  if (pp.showHelp) {
+    printf("vi_preprocessor accepts following command line options:\n");
+    printf("  -i or --in sets input file name\n");
+    printf("  -o or --out sets file name to store result\n");
+    printf("  -a or --aplh is a name of the file defining alphabet\n" );
+    printf("all are mandatory\n");
+    return 0;
+  }
+
   printf("Working in from %s\n", pp.inFilename);
   printf("Working out to %s\n", pp.outFilename);
 
