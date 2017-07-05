@@ -19,7 +19,5 @@ void initDecoderParameters(Chi2BreakerParameters* c2bp);
 int processCommandLine(int argc, char *argv[], Chi2BreakerParameters* parameters) ;
 
 int getChi2BreakerClapError(const int errorCode, char* line, const int lineLim);
-void printChi2BreakerClapError(const int errCode) ;
-
 
 #endif

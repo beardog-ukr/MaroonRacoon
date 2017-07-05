@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include "AlphabetTransform.h"
+#include "CommonCLAP.h"
 #include "Encoder.h"
 #include "EncoderCLAP.h"
 
@@ -47,7 +48,7 @@ int main(int argc, char *argv[]) {
   int pclr = processCommandLine(argc, argv, &ep) ; //
 
   if (pclr) {
-    printEncoderClapError(pclr);
+    printClapError(pclr, getEncoderClapError);
     return 1;
   }
 
@@ -55,7 +56,7 @@ int main(int argc, char *argv[]) {
     printf("vi_encoder accepts following command line options:\n");
     printf("  -i or --in sets input file name\n");
     printf("  -o or --out sets file name to store result\n");
-    printf("  -a or --aplh is a name of the file defining alphabet\n" );
+    printf("  -a or --alph is a name of the file defining alphabet\n" );
     printf("  -k or --key defines key\n" );
     printf("all parameters are mandatory\n");
     return 0;

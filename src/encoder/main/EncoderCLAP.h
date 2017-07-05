@@ -18,7 +18,5 @@ void initEncoderParameters(EncoderParameters* ep);
 int processCommandLine(int argc, char *argv[], EncoderParameters* parameters) ;
 
 int getEncoderClapError(const int errorCode, char* line, const int lineLim);
-void printEncoderClapError(const int errCode) ;
-
 
 #endif

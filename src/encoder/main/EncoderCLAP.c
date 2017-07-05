@@ -75,19 +75,6 @@ int getEncoderClapError(const int errorCode, char* line, const int lineLim) {
 
 // ===========================================================================
 
-void printEncoderClapError(const int errCode) {
-  const int ebs = 1024;
-  char errbuf[ebs];
-  if ( getEncoderClapError(errCode, errbuf, ebs) ==0) {
-    fprintf(stderr, "%s\n", errbuf);
-  }
-  else {
-    fprintf(stderr, "Unknown internal error (%u)\n", errCode);
-  }
-}
-
-// ===========================================================================
-
 int processCommandLine(int argc, char *argv[], EncoderParameters* parameters) {
   parameters->showHelp = false;
   parameters->inFilename =0 ;

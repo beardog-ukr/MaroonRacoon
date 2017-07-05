@@ -83,19 +83,6 @@ int getChi2BreakerClapError(const int errorCode, char* line, const int lineLim) 
 
 // ===========================================================================
 
-void printChi2BreakerClapError(const int errCode) {
-  const int ebs = 1024;
-  char errbuf[ebs];
-  if ( getChi2BreakerClapError(errCode, errbuf, ebs) ==0) {
-    fprintf(stderr, "%s\n", errbuf);
-  }
-  else {
-    fprintf(stderr, "Unknown internal error (Chi2breaker, %u)\n", errCode);
-  }
-}
-
-// ===========================================================================
-
 int processCommandLine(int argc, char *argv[], Chi2BreakerParameters* parameters) {
   parameters->showHelp = false;
   parameters->inFilename =0 ;

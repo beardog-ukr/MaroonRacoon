@@ -18,7 +18,5 @@ void initDecoderParameters(DecoderParameters* ep);
 int processCommandLine(int argc, char *argv[], DecoderParameters* parameters) ;
 
 int getDecoderClapError(const int errorCode, char* line, const int lineLim);
-void printDecoderClapError(const int errCode) ;
-
 
 #endif

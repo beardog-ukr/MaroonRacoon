@@ -16,7 +16,5 @@ typedef struct BreakerParametersStruct {
 int processCommandLine(int argc, char *argv[], BreakerParameters* parameters) ;
 
 int getBreakerClapError(const int errorCode, char* line, const int lineLim);
-void printBreakerClapError(const int errCode) ;
-
 
 #endif

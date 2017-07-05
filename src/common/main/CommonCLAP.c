@@ -1,6 +1,7 @@
 #include "CommonCLAP.h"
 
 #include <string.h> //strlen
+#include <stdio.h>
 
 // ===========================================================================
 
@@ -21,3 +22,14 @@ bool looksLikeOption(const char* const sample){
 }
 
 // ===========================================================================
+
+void printClapError(const int errCode,  int (*getErrorStr)(const int, char* , const int  )) {
+  const int ebs = 1024;
+  char errbuf[ebs];
+  if ( getErrorStr(errCode, errbuf, ebs) ==0) {
+    fprintf(stderr, "%s\n", errbuf);
+  }
+  else {
+    fprintf(stderr, "Unknown internal error (%u)\n", errCode);
+  }
+}

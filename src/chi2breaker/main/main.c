@@ -4,9 +4,10 @@
 #include <unistd.h>
 
 #include "AlphabetTransform.h"
-#include "FrequencyInfo.h"
 #include "Chi2Breaker.h"
 #include "Chi2BreakerCLAP.h"
+#include "CommonCLAP.h"
+#include "FrequencyInfo.h"
 
 // ===========================================================================
 
@@ -48,7 +49,7 @@ int main(int argc, char *argv[]) {
   int pclr = processCommandLine(argc, argv, &c2bp) ; //
 
   if (pclr) {
-    printChi2BreakerClapError(pclr);
+    printClapError(pclr, getChi2BreakerClapError);
     return 1;
   }
 
@@ -56,7 +57,7 @@ int main(int argc, char *argv[]) {
     printf("vi_ci2breaker accepts following command line options:\n");
     printf("  -i or --in sets input file name\n");
     printf("  -o or --out sets file name to store result\n");
-    printf("  -a or --aplh is a name of the file defining alphabet\n" );
+    printf("  -a or --alph is a name of the file defining alphabet\n" );
     printf("  -f or --fi is a name of the file defining letter frequency\n" );
     printf("  -k or --key defines key length (integer)\n" );
     printf("all parameters are mandatory\n");

@@ -5,6 +5,8 @@
 
 
 #include "Breaker.h"
+#include "CommonCLAP.h"
+#include "CommonCLAP.h"
 #include "BreakerCLAP.h"
 
 // ===========================================================================
@@ -46,7 +48,7 @@ int main(int argc, char *argv[]) {
   int pclr = processCommandLine(argc, argv, &bp) ; //
 
   if (pclr) {
-    printBreakerClapError(pclr);
+    printClapError(pclr, getBreakerClapError);
     return 1;
   }
 
@@ -54,7 +56,7 @@ int main(int argc, char *argv[]) {
     printf("vi_breaker accepts following command line options:\n");
     printf("  -i or --in sets input file name\n");
     printf("  -o or --out sets file name to store result\n");
-    printf("  -a or --aplh is a name of the file defining alphabet\n" );
+    printf("  -a or --alph is a name of the file defining alphabet\n" );
     printf("  -f or --fi is a name of the file defining letter frequency\n" );
     printf("all parameters are mandatory\n");
     return 0;

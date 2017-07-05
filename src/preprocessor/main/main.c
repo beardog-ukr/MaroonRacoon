@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include "CommonCLAP.h"
 #include "Preprocessor.h"
 #include "PreprocessorCLAP.h"
 
@@ -46,7 +47,7 @@ int main(int argc, char *argv[])
     printf("vi_preprocessor accepts following command line options:\n");
     printf("  -i or --in sets input file name\n");
     printf("  -o or --out sets file name to store result\n");
-    printf("  -a or --aplh is a name of the file defining alphabet\n" );
+    printf("  -a or --alph is a name of the file defining alphabet\n" );
     printf("all are mandatory\n");
     return 0;
   }
