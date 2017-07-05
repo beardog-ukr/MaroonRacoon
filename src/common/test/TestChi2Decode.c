@@ -51,7 +51,7 @@ bool tst_calculateChi2ForCoset_A(char* errorBuf, const int errorBufLim) {
   //example line and values came from
   //http://www.cs.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Recover.html
 
-  char* line = "WWBQCUOBSW";
+  const char* line = "WWBQCUOBSW";
   double lineChi2 = calculateChi2ForCoset(line, 0, &at, fi) ;
   double expectedChi2 = 17.0130;
   double diff = expectedChi2 -lineChi2;
@@ -89,7 +89,7 @@ bool tst_decodeChi2ForCoset_A(char* errorBuf, const int errorBufLim) {
   //example line and values came from
   //http://www.cs.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Recover.html
 
-  char* line = "NIBFOPDVWTZ";
+  const char* line = "NIBFOPDVWTZ";
   char ch = decodeChi2ForCoset(line, &at, fi) ;
   char expCh = 'B';
   if ( expCh != ch ) {

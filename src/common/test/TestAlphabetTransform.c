@@ -12,7 +12,7 @@ bool tst_checkKey_A(char* errorBuf, const int errorBufLim) {
   at.basic = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   at.n=26;
   //
-  char* k1 = "G";
+  const char* k1 = "G";
   if (checkKey(&at, k1)!=true) {
     snprintf(errorBuf, errorBufLim, "%s: bad for \"%s\"", __func__, k1);
     return false;

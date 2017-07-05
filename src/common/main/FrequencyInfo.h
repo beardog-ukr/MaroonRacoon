@@ -10,11 +10,11 @@ typedef struct FrequencyInfoStruct {
   double defaultFreq;
 } FrequencyInfo;
 
-FrequencyInfo* createFrequencyInfo() ;
+FrequencyInfo* createFrequencyInfo(void) ;
 FrequencyInfo* freeFrequencyInfo(FrequencyInfo* finfo) ;
 
-int loadFrequencyInfoFile(const char* filename, FrequencyInfo* finfo);
-int loadOneFrequencyInfoLine(char* line, char* sp, double* dp);
+int loadFrequencyInfoFile(const char* const filename, FrequencyInfo* finfo);
+int loadOneFrequencyInfoLine(const char* const line, char* sp, double* dp);
 
 int getFrequencyInfoLoaderError(const int errorCode, char* line, const int lineLim);
 void printFrequencyInfoLoaderError(const int errorCode);

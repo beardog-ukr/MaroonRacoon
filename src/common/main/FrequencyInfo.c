@@ -55,7 +55,7 @@ void printFrequencyInfoLoaderError(const int errorCode){
 
 // ===========================================================================
 
-FrequencyInfo* createFrequencyInfo()  {
+FrequencyInfo* createFrequencyInfo(void)  {
   FrequencyInfo* result = malloc(sizeof (FrequencyInfo) );
   result->symbols = 0;
   result->frequencies =0;
@@ -81,7 +81,7 @@ FrequencyInfo* freeFrequencyInfo(FrequencyInfo* finfo) {
 
 // ===========================================================================
 
-int loadOneFrequencyInfoLine(char* line, char* sp, double* dp){
+int loadOneFrequencyInfoLine(const char* const line, char* sp, double* dp){
   if (line==0) {
     // printf("FIEC_FILE_FORMAT 1\n");
     return FIEC_FILE_FORMAT;
@@ -109,7 +109,7 @@ int loadOneFrequencyInfoLine(char* line, char* sp, double* dp){
 
 // ===========================================================================
 
-int loadFrequencyInfoFile(const char* filename, FrequencyInfo* finfo) {
+int loadFrequencyInfoFile(const char* const filename, FrequencyInfo* finfo) {
   FILE* fp;
   fp = fopen(filename, "r");
   if (fp == NULL) {

@@ -7,7 +7,7 @@
 
 // ===========================================================================
 
-bool test_readFullFile_A_pf(char* const filename, char* errorBuf, const int errorBufLim) {
+bool test_readFullFile_A_pf(const char* const filename, char* errorBuf, const int errorBufLim) {
   FILE* fp;
   fp = fopen(filename, "w");
   if (fp == NULL) {
@@ -24,11 +24,11 @@ bool test_readFullFile_A_pf(char* const filename, char* errorBuf, const int erro
   return true;
 }
 
-bool test_readFullFile_A_a(char* const filename, char* errorBuf, const int errorBufLim) {
+bool test_readFullFile_A_a(const char* const filename, char* errorBuf, const int errorBufLim) {
   const int bSize = 100;
   char c0[bSize];
   readFullFile(filename, &c0[0], bSize);
-  char* e0 = "aaaaabcc";
+  const char* e0 = "aaaaabcc";
   if (strcmp(c0, e0)!=0) {
     snprintf(errorBuf, errorBufLim,
              "test_readFullFile_A: Failed read file 0: %s/%s", c0, e0);
@@ -41,7 +41,7 @@ bool test_readFullFile_A_a(char* const filename, char* errorBuf, const int error
 //int readFullFile(char* const filename, char* buf, const int bufLimit);
 bool tst_readFullFile_A(char* errorBuf, const int errorBufLim) {
   //
-  char* tmpFileName = "tf_tst_readFullFile_A.txt" ;
+  const char* tmpFileName = "tf_tst_readFullFile_A.txt" ;
   if (!test_readFullFile_A_pf(tmpFileName, errorBuf, errorBufLim)) {
     return false;
   }

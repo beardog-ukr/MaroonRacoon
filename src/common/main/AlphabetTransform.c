@@ -45,7 +45,7 @@ void printAlphabetLoaderError(const int errorCode){
 
 // ===========================================================================
 
-AlphabetTransform* createAlphabetTransform() {
+AlphabetTransform* createAlphabetTransform(void) {
   AlphabetTransform* result = malloc(sizeof (AlphabetTransform) );
   result->basic = 0;
   result->transformation =0;

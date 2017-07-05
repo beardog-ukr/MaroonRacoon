@@ -58,18 +58,17 @@ bool tst_decodeLine_A(char* errorBuf, const int errorBufLim) {
 
     //example values came from
   //http://www.cs.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Recover.html
-  char* key = "BOY" ;
+  const char* key = "BOY" ;
   int keyLen= 3;
-  char* line = "NWAIWEBBRFQFOCJPUGDOJVBGWSPTWRZ";
+  const char* line = "NWAIWEBBRFQFOCJPUGDOJVBGWSPTWRZ";
   char decoded[100];
 
   decodeLine(&at, line, key, keyLen, 0, &decoded[0], 100) ;
-  char* expDecoded = "MICHIGANTECHNOLOGICALUNIVERSITY" ;
+  const char* expDecoded = "MICHIGANTECHNOLOGICALUNIVERSITY" ;
   if (strcmp(&decoded[0], expDecoded)!=0 ) {
     snprintf(errorBuf, errorBufLim,"%s: lines %s/%s", __func__, decoded, expDecoded);
     return false;
   }
-
 
   line = "CDEFGHI";
   key = "C";

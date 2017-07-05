@@ -3,6 +3,6 @@
 
 #include <stdbool.h>
 
-bool looksLikeOption(char* const sample);
+bool looksLikeOption(const char* const sample);
 
 #endif

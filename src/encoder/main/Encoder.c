@@ -15,8 +15,8 @@ enum PreprocessorErrorCodes {
 
 // ===========================================================================
 
-char encodeOneChar(const AlphabetTransform* at,
-                    const char* key, const int keyLen,
+char encodeOneChar(const AlphabetTransform* const at,
+                    const char* const key, const int keyLen,
                     const int keyPos, const char symbol) {
   const char keyChar = key[(keyPos % keyLen)] ;
   int ksPos = findAlphabetPos(at->basic, keyChar);
@@ -32,8 +32,8 @@ char encodeOneChar(const AlphabetTransform* at,
 
 // ===========================================================================
 
-void encodeLine(const AlphabetTransform* at, char* line,
-                const char* key, const int keyLen, const int startPos,
+void encodeLine(const AlphabetTransform* const at, const char* const line,
+                const char* const key, const int keyLen, const int startPos,
                 char* result, const int resultLimit){
   const int lineLen = strlen(line);
 
@@ -56,8 +56,8 @@ void encodeLine(const AlphabetTransform* at, char* line,
 
 // ===========================================================================
 
-int performEncoding(const char* inFilename, const char* outFilename,
-                    const char* key, const AlphabetTransform* at) {
+int performEncoding(const char* const inFilename, const char* const outFilename,
+                    const char* const key, const AlphabetTransform* const at) {
   const int keyLen = strlen(key);
   if (keyLen==0) {
     return EEC_EMPTY_KEY;

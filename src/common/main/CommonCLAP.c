@@ -4,7 +4,7 @@
 
 // ===========================================================================
 
-bool looksLikeOption(char* const sample){
+bool looksLikeOption(const char* const sample){
   if (sample==0) {
     return true;
   }

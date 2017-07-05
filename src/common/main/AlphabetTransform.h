@@ -10,7 +10,7 @@ typedef struct AlphabetTransformStruct {
   int n;// number of symbols in the alphabet (26 for english)
 } AlphabetTransform;
 
-AlphabetTransform* createAlphabetTransform() ;
+AlphabetTransform* createAlphabetTransform(void) ;
 AlphabetTransform* freeAlphabetTransform(AlphabetTransform* at) ;
 
 int loadAlphabetFile(const char* filename, AlphabetTransform* at);

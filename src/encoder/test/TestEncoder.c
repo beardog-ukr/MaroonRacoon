@@ -57,13 +57,13 @@ bool tst_encodeLine_A(char* errorBuf, const int errorBufLim) {
 
     //example values came from
   //http://www.cs.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Recover.html
-  char* key = "BOY" ;
+  const char* key = "BOY" ;
   int keyLen= 3;
-  char* line = "MICHIGANTECHNOLOGICALUNIVERSITY";
+  const char* line = "MICHIGANTECHNOLOGICALUNIVERSITY";
   char encoded[100];
 
   encodeLine(&at, line, key, keyLen, 0, &encoded[0], 100) ;
-  char* expEncoded = "NWAIWEBBRFQFOCJPUGDOJVBGWSPTWRZ" ;
+  const char* expEncoded = "NWAIWEBBRFQFOCJPUGDOJVBGWSPTWRZ" ;
   if (strcmp(&encoded[0], expEncoded)!=0 ) {
     snprintf(errorBuf, errorBufLim,"%s: lines %s/%s", __func__, encoded, expEncoded);
     return false;

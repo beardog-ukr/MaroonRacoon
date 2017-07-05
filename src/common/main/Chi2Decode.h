@@ -6,10 +6,10 @@
 #include "AlphabetTransform.h"
 #include "FrequencyInfo.h"
 
-double calculateChi2ForCoset(char* const coset, const int shiftValue,
-                     const AlphabetTransform* at, const FrequencyInfo* finfo);
+double calculateChi2ForCoset(const char* const coset, const int shiftValue,
+                     const AlphabetTransform* at, const FrequencyInfo* const  finfo);
 
-char decodeChi2ForCoset(char* const coset,
-                      const AlphabetTransform* at, const FrequencyInfo* finfo);
+char decodeChi2ForCoset(const char* const coset,
+                      const AlphabetTransform* at, const FrequencyInfo* const finfo);
 
 #endif

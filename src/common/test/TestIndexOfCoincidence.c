@@ -15,11 +15,11 @@ bool tst_calculateIndexOfCoincidence_A(char* errorBuf, const int errorBufLim) {
   //both examples values in this function came from
   //http://www.cs.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-IOC.html
 
-  char* c1 = "THEREARETWOWAYSOFCONSTRUCTINGASOFTWAREDESIGNONEWAY"
-             "ISTOMAKEITSOSIMPLETHATTHEREAREOBVIOUSLYNODEFICIENC"
-             "IESANDTHEOTHERWAYISTOMAKEITSOCOMPLICATEDTHATTHEREA"
-             "RENOOBVIOUSDEFICIENCIESTHEFIRSTMETHODISFARMOREDIFF"
-             "ICULT" ;
+  const char* c1 = "THEREARETWOWAYSOFCONSTRUCTINGASOFTWAREDESIGNONEWAY"
+                   "ISTOMAKEITSOSIMPLETHATTHEREAREOBVIOUSLYNODEFICIENC"
+                   "IESANDTHEOTHERWAYISTOMAKEITSOCOMPLICATEDTHATTHEREA"
+                   "RENOOBVIOUSDEFICIENCIESTHEFIRSTMETHODISFARMOREDIFF"
+                   "ICULT" ;
 
   double ioc = calculateIndexOfCoincidence(c1, &at) ;
   double expectedIoc = 0.068101;
@@ -30,7 +30,7 @@ bool tst_calculateIndexOfCoincidence_A(char* errorBuf, const int errorBufLim) {
     return false;
   }
 
-  char* c2 = "VVQGYTVVVKALURWFHQACMMVLEHUCATWFHHIPLXHVUWSCIGINCM"
+  const char* c2 = "VVQGYTVVVKALURWFHQACMMVLEHUCATWFHHIPLXHVUWSCIGINCM"
              "UHNHQRMSUIMHWZODXTNAEKVVQGYTVVQPHXINWCABASYYMTKSZR"
              "CXWRPRFWYHXYGFIPSBWKQAMZYBXJQQABJEMTCHQSNAEKVVQGYT"
              "VVPCAQPBSLURQUCVMVPQUTMMLVHWDHNFIKJCPXMYEIOCDTXBJW"
@@ -45,7 +45,7 @@ bool tst_calculateIndexOfCoincidence_A(char* errorBuf, const int errorBufLim) {
     return false;
   }
 
-  char* c3 = "ABCDEFHIJ" ;
+  const char* c3 = "ABCDEFHIJ" ;
   ioc = calculateIndexOfCoincidence(c3, &at) ;
   expectedIoc = 0.0; // unique letters will give IoC ==0
                     // since thre are no two equal letters
@@ -71,7 +71,7 @@ bool tst_guessKeyLengthIOC_A(char* errorBuf, const int errorBufLim) {
   //both examples values in this function came from
   // http://www.cs.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-IOC-Len.html
 
-  char* c1 = "VVQGYTVVVKALURWFHQACMMVLEHUCATWFHHIPLXHVUWSCIGINCM"
+  const char* c1 = "VVQGYTVVVKALURWFHQACMMVLEHUCATWFHHIPLXHVUWSCIGINCM"
              "UHNHQRMSUIMHWZODXTNAEKVVQGYTVVQPHXINWCABASYYMTKSZR"
              "CXWRPRFWYHXYGFIPSBWKQAMZYBXJQQABJEMTCHQSNAEKVVQGYT"
              "VVPCAQPBSLURQUCVMVPQUTMMLVHWDHNFIKJCPXMYEIOCDTXBJW"

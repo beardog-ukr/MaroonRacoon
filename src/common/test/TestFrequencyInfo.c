@@ -53,7 +53,7 @@ bool tst_loadOneFrequencyInfoLine_A(char* errorBuf, const int errorBufLim) {
 // ============================================================================
 // ============================================================================
 
-bool tst_loadFrequencyInfoFile_A_prepareFile(char* const filename,
+bool tst_loadFrequencyInfoFile_A_prepareFile(const char* const filename,
                                       char* errorBuf, const int errorBufLim) {
   FILE* fp;
   fp = fopen(filename, "w");
@@ -72,7 +72,7 @@ bool tst_loadFrequencyInfoFile_A_prepareFile(char* const filename,
   return true;
 }
 
-bool tst_loadFrequencyInfoFile_A_actions(char* fn, FrequencyInfo* finfo,
+bool tst_loadFrequencyInfoFile_A_actions(const char* const fn, FrequencyInfo* finfo,
                                      char* errorBuf, const int errorBufLim) {
   int ti = loadFrequencyInfoFile(fn, finfo) ;
   if (ti!=0) {
@@ -112,7 +112,7 @@ bool tst_loadFrequencyInfoFile_A_actions(char* fn, FrequencyInfo* finfo,
 
 //int loadFrequencyInfoFile(const char* filename, FrequencyInfo* finfo);
 bool tst_loadFrequencyInfoFile_A(char* errorBuf, const int errorBufLim) {
-  char* tmpFileName = "tf_tst_loadFrequencyInfoFile_A.txt" ;
+  const char* tmpFileName = "tf_tst_loadFrequencyInfoFile_A.txt" ;
   if (!tst_loadFrequencyInfoFile_A_prepareFile(tmpFileName, errorBuf, errorBufLim)) {
     return false;
   }

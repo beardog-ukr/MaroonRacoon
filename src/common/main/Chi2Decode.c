@@ -9,10 +9,10 @@
 
 // ===========================================================================
 
-double calculateChi2ForCoset(char* const coset, const int shiftValue,
-                     const AlphabetTransform* at, const FrequencyInfo* finfo) {
+double calculateChi2ForCoset(const char* const coset, const int shiftValue,
+                     const AlphabetTransform* at, const FrequencyInfo*const  finfo) {
   int* counters = malloc(at->n * (sizeof (int)));
-  double* actualFreq = malloc(at->n * (sizeof (double)));
+  //double* actualFreq = malloc(at->n * (sizeof (double)));
   for(int i=0; i< at->n; i++) {
     counters[i] = 0;
   }
@@ -37,15 +37,15 @@ double calculateChi2ForCoset(char* const coset, const int shiftValue,
   }
 
   free(counters);
-  free(actualFreq);
+  //free(actualFreq);
 
   return chi2;
 }
 
 // ===========================================================================
 
-char decodeChi2ForCoset(char* const coset,
-                    const AlphabetTransform* at, const FrequencyInfo* finfo) {
+char decodeChi2ForCoset(const char* const coset,
+  const AlphabetTransform* const at, const FrequencyInfo* const finfo) {
   char result = '\0' ;
   double resultValue = DBL_MAX;
   for(int i=0; i<at->n; i++) {
