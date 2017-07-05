@@ -63,9 +63,10 @@ bool tst_loadFrequencyInfoFile_A_prepareFile(char* const filename,
     return false;
   }
 
+  fprintf(fp, "%s\n", "88.99");
   fprintf(fp, "%s\n", "a 0.0123");
   fprintf(fp, "%s\n", "b 44.5");
-  fprintf(fp, "%s", "c 222");
+  fprintf(fp, "%s",   "c 222");
 
   fclose(fp);
   return true;
@@ -77,6 +78,12 @@ bool tst_loadFrequencyInfoFile_A_actions(char* fn, FrequencyInfo* finfo,
   if (ti!=0) {
     snprintf(errorBuf, errorBufLim,
              "tst_loadFrequencyInfoFile_A: Failed (re)open file");
+    return false;
+  }
+
+  if (finfo->defaultFreq != 88.99) {
+    snprintf(errorBuf, errorBufLim,
+             "%s: bad defaultFreq %f/%f", __func__, finfo->defaultFreq, 88.99);
     return false;
   }
 
@@ -130,9 +137,9 @@ bool tst_getFrequency_A(char* errorBuf, const int errorBufLim) {
 
   //finfo is empty here
   double tmpd = getFrequency('s', finfop);
-  if (tmpd >=0) {
+  if (tmpd !=0.0) {
     snprintf(errorBuf, errorBufLim,
-             "tst_getFrequency_A: unexpected for empty info");
+             "tst_getFrequency_A: unexpected for empty info %f/%f", tmpd, 0.0);
     return false;
   }
 
@@ -147,6 +154,7 @@ bool tst_getFrequency_A(char* errorBuf, const int errorBufLim) {
   FrequencyInfo finfo ;
   finfo.frequencies = farr;
   finfo.symbols = charr;
+  finfo.defaultFreq = 12.345 ;
   finfo.n=3;
 
   double dc = getFrequency('C', &finfo);
@@ -160,9 +168,9 @@ bool tst_getFrequency_A(char* errorBuf, const int errorBufLim) {
   }
 
   double dd = getFrequency('D', &finfo);
-  if (dd >=0) {
+  if (dd != finfo.defaultFreq) { //
     snprintf(errorBuf, errorBufLim,
-             "tst_getFrequency_A: unexpected for incorrect key");
+             "tst_getFrequency_A: unexpected for incorrect key %f/%f", dd, finfo.defaultFreq);
     return false;
   }
 

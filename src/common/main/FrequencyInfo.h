@@ -7,6 +7,7 @@ typedef struct FrequencyInfoStruct {
   char* symbols;
   double* frequencies;
   int n; //number of elements
+  double defaultFreq;
 } FrequencyInfo;
 
 FrequencyInfo* createFrequencyInfo() ;

@@ -60,6 +60,7 @@ FrequencyInfo* createFrequencyInfo()  {
   result->symbols = 0;
   result->frequencies =0;
   result->n =0;
+  result->defaultFreq = 0.0;
   return result;
 }
 
@@ -119,6 +120,10 @@ int loadFrequencyInfoFile(const char* filename, FrequencyInfo* finfo) {
   double frequencies[elementsLimit];
   char symbols[elementsLimit];
 
+  if (fgets(buf, bufSize, fp) != NULL ) {
+    finfo->defaultFreq = strtod(&buf[0],0);
+  }
+
   int ecounter = 0;
   int result =0;
   while ( (result==0) && ( fgets(buf, bufSize, fp) != NULL ) ) {
@@ -154,7 +159,7 @@ double getFrequency(const char symbol, const FrequencyInfo* const info) {
   }
 
   //bad, not found
-  return -1.0;
+  return info->defaultFreq;
 }
 
 // ===========================================================================
