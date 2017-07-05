@@ -21,6 +21,10 @@ char encodeOneChar(const AlphabetTransform* at,
   const char keyChar = key[(keyPos % keyLen)] ;
   int ksPos = findAlphabetPos(at->basic, keyChar);
   int psPos = findAlphabetPos(at->basic, symbol);
+  if ((ksPos<0)||(psPos<0)) {
+    return '\0';
+  }
+
   int cPos = (ksPos + psPos) % at->n;
 
   return at->basic[cPos];

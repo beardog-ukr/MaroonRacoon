@@ -138,6 +138,41 @@ clean_encoder: clean_common
 
 # ============================================================================
 
+ENCODER_TEST_SOURCES_DIR = src/encoder/test/
+ENCODER_TEST_SOURCES = main.c
+ENCODER_TEST_SOURCES += TestEncoder.c
+
+ENCODER_TEST_OBJ = $(ENCODER_TEST_SOURCES:.c=.o)
+ENCODER_TEST_OBJ_DIR = build/encoder_test_obj/
+ENCODER_TEST_OBJ_FP = $(addprefix $(ENCODER_TEST_OBJ_DIR),$(ENCODER_TEST_OBJ))
+
+ENCODER_TEST_INCLUDES = -I $(ENCODER_SOURCES_DIR)
+ENCODER_TEST_INCLUDES += -I $(ENCODER_TEST_SOURCES_DIR)
+ENCODER_TEST_INCLUDES += -I $(COMMON_SOURCES_DIR)
+
+ENCODER_TEST_EXECUTABLE = vi_test_encoder
+ifeq ($(OS), Windows_NT)
+	ENCODER_EXECUTABLE = vi_test_encoder.exe
+endif
+ENCODER_TEST_EXECUTABLE_DIR = build/testbin/
+ENCODER_TEST_EXECUTABLE_FP = $(addprefix $(ENCODER_TEST_EXECUTABLE_DIR),$(ENCODER_TEST_EXECUTABLE))
+
+ENCODER_OBJ_FP_FILTERED = $(filter-out build/encoder_obj/main.o, $(ENCODER_OBJ_FP))
+
+encoder_test: common encoder $(ENCODER_TEST_OBJ_FP) $(ENCODER_TEST_EXECUTABLE_FP)
+
+$(ENCODER_TEST_EXECUTABLE_FP): $(ENCODER_TEST_OBJ_FP)
+	$(CC) $(COMMON_OBJ_FP) $(ENCODER_OBJ_FP_FILTERED) $(ENCODER_TEST_OBJ_FP) -o $@
+
+$(ENCODER_TEST_OBJ_DIR)%.o: $(ENCODER_TEST_SOURCES_DIR)%.c
+	$(CC) -c $< -o $@  $(CFLAGS) $(ENCODER_TEST_INCLUDES)
+
+clean_encoder_test: clean_common clean_common_test clean_encoder
+	-$(RM) $(ENCODER_TEST_OBJ_FP)
+	-$(RM) $(ENCODER_TEST_EXECUTABLE_FP)
+
+# ============================================================================
+
 PREPROCESSOR_SOURCES_DIR = src/preprocessor/main/
 PREPROCESSOR_SOURCES = main.c
 PREPROCESSOR_SOURCES += Preprocessor.c
@@ -237,42 +272,6 @@ clean_chi2breaker: clean_common
 
 # ============================================================================
 
-CHI2BREAKER_TEST_SOURCES_DIR = src/chi2breaker/test/
-CHI2BREAKER_TEST_SOURCES = main.c
-#CHI2BREAKER_TEST_SOURCES += TestChi2Breaker.c
-
-CHI2BREAKER_TEST_OBJ = $(CHI2BREAKER_TEST_SOURCES:.c=.o)
-CHI2BREAKER_TEST_OBJ_DIR = build/chi2breaker_test_obj/
-CHI2BREAKER_TEST_OBJ_FP = $(addprefix $(CHI2BREAKER_TEST_OBJ_DIR),$(CHI2BREAKER_TEST_OBJ))
-
-CHI2BREAKER_TEST_INCLUDES = -I $(CHI2BREAKER_SOURCES_DIR)
-CHI2BREAKER_TEST_INCLUDES += -I $(CHI2BREAKER_TEST_SOURCES_DIR)
-CHI2BREAKER_TEST_INCLUDES += -I $(COMMON_SOURCES_DIR)
-
-CHI2BREAKER_TEST_EXECUTABLE = vi_test_chi2breaker
-ifeq ($(OS), Windows_NT)
-	CHI2BREAKER_EXECUTABLE = vi_test_chi2breaker.exe
-endif
-CHI2BREAKER_TEST_EXECUTABLE_DIR = build/testbin/
-CHI2BREAKER_TEST_EXECUTABLE_FP = $(addprefix $(CHI2BREAKER_TEST_EXECUTABLE_DIR),$(CHI2BREAKER_TEST_EXECUTABLE))
-
-#CHI2BREAKER_OBJ_FP_FILTERED = $(filter-out $(wildcard */main.o), $(CHI2BREAKER_OBJ_FP))
-CHI2BREAKER_OBJ_FP_FILTERED = $(filter-out build/chi2breaker_obj/main.o, $(CHI2BREAKER_OBJ_FP))
-
-chi2breaker_test: common chi2breaker $(CHI2BREAKER_TEST_OBJ_FP) $(CHI2BREAKER_TEST_EXECUTABLE_FP)
-
-$(CHI2BREAKER_TEST_EXECUTABLE_FP): $(CHI2BREAKER_TEST_OBJ_FP)
-	$(CC) $(COMMON_OBJ_FP) $(CHI2BREAKER_OBJ_FP_FILTERED) $(CHI2BREAKER_TEST_OBJ_FP) -o $@
-
-$(CHI2BREAKER_TEST_OBJ_DIR)%.o: $(CHI2BREAKER_TEST_SOURCES_DIR)%.c
-	$(CC) -c $< -o $@  $(CFLAGS) $(CHI2BREAKER_TEST_INCLUDES)
-
-clean_chi2breaker_test: clean_common clean_common_test clean_chi2breaker
-	-$(RM) $(CHI2BREAKER_TEST_OBJ_FP)
-	-$(RM) $(CHI2BREAKER_TEST_EXECUTABLE_FP)
-
-# ============================================================================
-
 all: breaker chi2breaker decoder encoder preprocessor
 
 # ============================================================================
@@ -281,9 +280,9 @@ CLEAN_TARGETS =  clean_common
 CLEAN_TARGETS += clean_common_test
 CLEAN_TARGETS += clean_breaker
 CLEAN_TARGETS += clean_chi2breaker
-CLEAN_TARGETS += clean_chi2breaker_test
 CLEAN_TARGETS += clean_decoder
 CLEAN_TARGETS += clean_encoder
+CLEAN_TARGETS += clean_encoder_test
 CLEAN_TARGETS += clean_preprocessor
 
 clean: $(CLEAN_TARGETS)
@@ -291,7 +290,7 @@ clean: $(CLEAN_TARGETS)
 # ============================================================================
 
 TEST_TARGETS = common_test
-TEST_TARGETS += chi2breaker_test
+TEST_TARGETS += encoder_test
 
 tests: $(TEST_TARGETS)
 

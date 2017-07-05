@@ -1,5 +1,5 @@
-#include "TestBasicDecode.h"
-#include "BasicDecode.h"
+#include "TestEncoder.h"
+#include "Encoder.h"
 
 #include <stdbool.h> //bool
 #include <stdio.h> //fgetc, fopen
@@ -8,10 +8,10 @@
 
 // ===========================================================================
 
-//char decodeOneChar(const AlphabetTransform* at,
+//char encodeOneChar(const AlphabetTransform* at,
 //                    const char* key, const int keyLen,
 //                    const int keyPos, const char symbol) ;
-bool tst_decodeOneChar_A(char* errorBuf, const int errorBufLim) {
+bool tst_encodeOneChar_A(char* errorBuf, const int errorBufLim) {
   AlphabetTransform at ;
   at.basic = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   at.n=26;
@@ -22,21 +22,21 @@ bool tst_decodeOneChar_A(char* errorBuf, const int errorBufLim) {
   //example values came from
   //http://www.cs.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Recover.html
 
-  char ch = decodeOneChar(&at, key, keyLen, 0, 'N' );
-  char expCh = 'M';
+  char ch = encodeOneChar(&at, key, keyLen, 0, 'M' );
+  char expCh = 'N';
   if (expCh!=ch) {
     snprintf(errorBuf, errorBufLim,"%s: chars %c/%c", __func__, ch, expCh);
     return false;
   }
 
-  ch = decodeOneChar(&at, key, keyLen, 20, 'J' );
-  expCh = 'L';
+  ch = encodeOneChar(&at, key, keyLen, 20, 'L' );
+  expCh = 'J';
   if (expCh!=ch) {
     snprintf(errorBuf, errorBufLim,"%s: chars %c/%c", __func__, ch, expCh);
     return false;
   }
 
-  ch = decodeOneChar(&at, key, keyLen, 0, '%' );
+  ch = encodeOneChar(&at, key, keyLen, 0, '%' );
   expCh = '\0';
   if (expCh!=ch) {
     snprintf(errorBuf, errorBufLim,"%s: chars %c/%c", __func__, ch, expCh);
@@ -47,11 +47,10 @@ bool tst_decodeOneChar_A(char* errorBuf, const int errorBufLim) {
 }
 
 // ===========================================================================
-
-//void decodeLine(const AlphabetTransform* at, char* line,
+//void encodeLine(const AlphabetTransform* at, char* line,
 //                const char* key, const int keyLen, const int startPos,
 //                char* result, const int resultLimit) ;
-bool tst_decodeLine_A(char* errorBuf, const int errorBufLim) {
+bool tst_encodeLine_A(char* errorBuf, const int errorBufLim) {
   AlphabetTransform at ;
   at.basic = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   at.n=26;
@@ -60,24 +59,36 @@ bool tst_decodeLine_A(char* errorBuf, const int errorBufLim) {
   //http://www.cs.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Recover.html
   char* key = "BOY" ;
   int keyLen= 3;
-  char* line = "NWAIWEBBRFQFOCJPUGDOJVBGWSPTWRZ";
-  char decoded[100];
+  char* line = "MICHIGANTECHNOLOGICALUNIVERSITY";
+  char encoded[100];
 
-  decodeLine(&at, line, key, keyLen, 0, &decoded[0], 100) ;
-  char* expDecoded = "MICHIGANTECHNOLOGICALUNIVERSITY" ;
-  if (strcmp(&decoded[0], expDecoded)!=0 ) {
-    snprintf(errorBuf, errorBufLim,"%s: lines %s/%s", __func__, decoded, expDecoded);
+  encodeLine(&at, line, key, keyLen, 0, &encoded[0], 100) ;
+  char* expEncoded = "NWAIWEBBRFQFOCJPUGDOJVBGWSPTWRZ" ;
+  if (strcmp(&encoded[0], expEncoded)!=0 ) {
+    snprintf(errorBuf, errorBufLim,"%s: lines %s/%s", __func__, encoded, expEncoded);
     return false;
   }
 
+  //THERE ARETW OWAYS OFCON STRUC TINGA SOFTW AREDE SIGN
+  line = "ONEWAYISTOMAKEITSOSIMPLETHATTHEREAREOBVIOUSLYNODEFICIENCIES";
+  key = "COMPUTER";
+  keyLen = 8;
 
-  line = "CDEFGHI";
+  encodeLine(&at, line, key, keyLen, 44, &encoded[0], 100) ;
+  expEncoded = "IGINCMUHNHQRMSUIMHWZODXTNAEKVVQGYTVVQPHXINWCABASYYMTKSZRCXW" ;
+  if (strcmp(&encoded[0], expEncoded)!=0 ) {
+    snprintf(errorBuf, errorBufLim,"%s: lines %s/%s", __func__, encoded, expEncoded);
+    return false;
+  }
+
+  line = "ABCDEFG";
   key = "C";
   keyLen = 1;
-  expDecoded = "ABCDEFG" ;
-  decodeLine(&at, line, key, keyLen, 0, &decoded[0], 100) ;
-  if (strcmp(&decoded[0], expDecoded)!=0 ) {
-    snprintf(errorBuf, errorBufLim,"%s: lines %s/%s", __func__, decoded, expDecoded);
+
+  encodeLine(&at, line, key, keyLen, 0, &encoded[0], 100) ;
+  expEncoded = "CDEFGHI" ;
+  if (strcmp(&encoded[0], expEncoded)!=0 ) {
+    snprintf(errorBuf, errorBufLim,"%s: lines %s/%s", __func__, encoded, expEncoded);
     return false;
   }
 
