@@ -89,18 +89,18 @@ USAGE
 vi_preprocessor accepts following command line options:
 -i or --in sets input file name
 -o or --out sets file name to store result
--a or --aplh is a name of the file defining alphabet
+-a or --alph is a name of the file defining alphabet
 
 vi_decoder and vi_encoder both accept similar command line options:
 -i or --in sets input file name
 -o or --out sets file name to store result
--a or --aplh is a name of the file defining alphabet
+-a or --alph is a name of the file defining alphabet
 -k or --key sets a key string
 
 vi_breaker uses following:
 -i or --in sets input file name
 -o or --out sets file name to store result
--a or --aplh is a name of the file defining alphabet
+-a or --alph is a name of the file defining alphabet
 -f or --fi is a name of the file defining letter frequency
 
 So all options reqire parameter and all are mandatory.
