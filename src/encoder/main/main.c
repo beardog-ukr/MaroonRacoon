@@ -20,7 +20,13 @@ void performAction(EncoderParameters* pp) {
     // printf("basic         : %s\n", atRules->basic);
     // printf("transformation: %s\n", atRules->transformation);
     // printf("transConfirm  : %s\n", atRules->transConfirm);
+    if (!checkKey(atRules, pp->key)) {
+      printf("Error: Key \"%s\" does not conform alphabet\n", pp->key);
+      execResult = 1;
+    }
+  }
 
+  if (!execResult) {
     execResult = performEncoding(pp->inFilename, pp->outFilename,
                                  pp->key, atRules  );
   }

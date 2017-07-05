@@ -1,5 +1,6 @@
 #include <stdio.h> //printf
 
+#include "TestAlphabetTransform.h"
 #include "TestBasicDecode.h"
 #include "TestChi2Decode.h"
 #include "TestCommonCLAP.h"
@@ -86,6 +87,11 @@ int main(int argc, char *argv[]) {
           tst_decodeOneChar_A);
   runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
           tst_decodeLine_A);
+
+  // -------------------------------------------------------------------------
+  runTest(&testCounter, &failedCounter, &errorMessageBuf[0], errorMessageLimit,
+          tst_checkKey_A);
+
 
 
   printf("Finished \"Common\" testing\n");

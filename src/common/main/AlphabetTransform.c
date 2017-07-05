@@ -208,3 +208,25 @@ void convertLine(const AlphabetTransform* at, char* line,
 }
 
 // ===========================================================================
+
+bool checkKey(const AlphabetTransform* const at, const char* const key) {
+  const int keyLen = strlen(key) ;
+  if (keyLen==0) {
+    // printf("Zero length str %s\n", key);
+    return false;
+  }
+
+  const char* chi = key;
+  while(*chi) {
+    if (findAlphabetPos(at->basic, *chi) <0) {
+      // printf("Failed for %c\n", *chi);
+      return false;
+    } ;
+
+    chi++;
+  }
+
+  return true;
+}
+
+// ===========================================================================

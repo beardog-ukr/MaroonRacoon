@@ -16,6 +16,13 @@ void performAction(DecoderParameters* pp) {
   execResult = loadAlphabetFile(pp->alphFilename, atRules);
 
   if (!execResult) {
+    if (!checkKey(atRules, pp->key)) {
+      printf("Error: Key \"%s\" does not conform alphabet\n", pp->key);
+      execResult = 1;
+    }
+  }
+
+  if (!execResult) {
     execResult = performDecoding(pp->inFilename, pp->outFilename, pp->key, atRules  );
   }
   //

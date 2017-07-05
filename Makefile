@@ -35,6 +35,7 @@ clean_common:
 
 COMMON_TEST_SOURCES_DIR = src/common/test/
 COMMON_TEST_SOURCES = main.c
+COMMON_TEST_SOURCES += TestAlphabetTransform.c
 COMMON_TEST_SOURCES += TestBasicDecode.c
 COMMON_TEST_SOURCES += TestChi2Decode.c
 COMMON_TEST_SOURCES += TestCommonCLAP.c
