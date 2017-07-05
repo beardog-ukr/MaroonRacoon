@@ -2,14 +2,28 @@
 
 # This script works with m1_orig.txt;
 # First the file will be preprocessed, then encrypted, then decrypted. Results should be the same.
+# Uses capitalized alphabet
 
-cp ./samples/m1_orig.txt ./tmp/m1_orig.txt
+Basic="./samples/m1_orig.txt"
+BasicTmp="./tmp/m1_orig.txt"
+Preprocessed="./tmp/m1_p_sec.txt"
+Alphabet="./samples/alphabets/simpleEnglishCaps.txt"
+Encrypted="./tmp/m1_E_sec.txt"
+Decrypted="./tmp/m1_D_sec.txt"
+KeyStr="BRAVO"
 
-build/bin/vi_preprocessor -i ./tmp/m1_orig.txt -o ./tmp/m1_p_sec.txt -a ./samples/simpleEnglishCaps.txt
+rm -f $BasicTmp
+rm -f $Preprocessed
+rm -f $Encrypted
+rm -f $Decrypted
 
-build/bin/vi_encoder -i ./tmp/m1_p_sec.txt -o ./tmp/m1_E_sec.txt -k BRAVO -a ./samples/simpleEnglishCaps.txt
+cp $Basic $BasicTmp
 
-build/bin/vi_decoder -i ./tmp/m1_E_sec.txt -o ./tmp/m1_dec.txt -k BRAVO -a ./samples/simpleEnglishCaps.txt
+./build/bin/vi_preprocessor -i $BasicTmp -o $Preprocessed -a $Alphabet
+
+./build/bin/vi_encoder -i $Preprocessed -o $Encrypted -k $KeyStr -a $Alphabet
+
+./build/bin/vi_decoder -i $Encrypted -o $Decrypted -k  $KeyStr -a $Alphabet
 
 
 
