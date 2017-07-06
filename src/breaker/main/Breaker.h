@@ -8,5 +8,6 @@ int performBreak(const char* const inFilename, const char* const outFilename,
                  const AlphabetTransform* const at,
                  const FrequencyInfo* const finfo) ;
 
+void printBreakerError(const int errorCode);
 
 #endif

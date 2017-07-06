@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-
 #include "Breaker.h"
 #include "CommonCLAP.h"
 #include "CommonCLAP.h"
@@ -32,7 +31,7 @@ void performAction(BreakerParameters pp) {
 
   execResult = performBreak(pp.inFilename, pp.outFilename, atRules, finf);
   if (execResult!=0) {
-    printf("Failed something %u\n", execResult);
+    printBreakerError(execResult);
   }
 
   freeAlphabetTransform(atRules);
