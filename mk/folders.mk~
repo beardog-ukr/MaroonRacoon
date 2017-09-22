@@ -1,0 +1,5 @@
+
+MAIN_DIR:= $(dir $(mkfile_path))
+
+COMMON_SOURCES_DIR := $(MAIN_DIR)/src/common/main/
+

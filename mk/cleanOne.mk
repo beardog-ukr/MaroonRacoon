@@ -1,0 +1,12 @@
+
+SUB_SOURCES_FP := 
+SUB_OBJ := 
+SUB_OBJ_DIR := 
+SUB_OBJ_FP := 
+SUB_OTHER_OBJ_FP :=
+
+SUB_DEPS := 
+
+SUB_EXECUTABLE_FP :=
+
+
